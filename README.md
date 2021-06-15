@@ -1,6 +1,6 @@
 TODO: Add more to the title of your project here
 
-# learingr:
+# learingr: boring
 
 TODO: THIS Is for Course
 
