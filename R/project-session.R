@@ -2,7 +2,7 @@ source(here::here("R/package-loading.R"))
 10
 
 # Basics of R -------------------------------------------------------------
-
+?colnames
 10
 weight_kilos <- 100
 weight_kilos
