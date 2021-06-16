@@ -106,3 +106,45 @@ nhanes_update <- nhanes_small %>%
 
 # to see the structure
 str(nhanes_update)
+
+## SUMMARY STAT- exclude not existing data-NA - ---na.rm = TRUE
+# 1.
+nhanes_small %>%
+    summarise(mean_weight = mean(weight, na.rm = TRUE),
+              mean_age = mean(age, na.rm = TRUE))
+
+# 2.
+nhanes_small %>%
+    summarise(max_height = max(height, na.rm = TRUE),
+              min_height = min(height, na.rm = TRUE))
+
+# 3.
+nhanes_small %>%
+    summarise(median_age = median(age, na.rm = TRUE),
+              median_phys_active_days = median(phys_active_days, na.rm = TRUE))
+
+
+## Calculating summary statistic by group
+nhanes_small %>%
+    group_by(diabetes) %>%
+    summarise(mean_age = mean(age, na.rm = TRUE),
+              mean_bmi = mean(bmi, na.rm = TRUE))
+# to remove NA from statistic as there is NA in result ---filter(!is.na(diabets))
+nhanes_small %>%
+    filter(!is.na(diabetes)) %>%
+    group_by(diabetes) %>%
+    summarise(mean_age = mean(age, na.rm = TRUE),
+              mean_bmi = mean(bmi, na.rm = TRUE))
+#ungroup
+nhanes_small %>%
+    filter(!is.na(diabetes)) %>%
+    group_by(diabetes) %>%
+    summarise(mean_age = mean(age, na.rm = TRUE),
+              mean_bmi = mean(bmi, na.rm = TRUE)) %>%
+    ungroup()
+## SAVING dataset as files
+#Saving data as an.rda file in the data folder- safe data from r- like excell exe
+usethis::use_data(nhanes_small, overwrite = TRUE)
+
+## How to open it 9.20
+
