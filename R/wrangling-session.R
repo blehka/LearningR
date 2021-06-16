@@ -58,3 +58,16 @@ nhanes_small %>% colnames()
 nhanes_small %>%
     select(phys_active) %>%
     rename(physically_physically = phys_active)
+
+##Summary statistics by group
+nhanes_small %>%
+    summarise(max_bmi = max(bmi))
+# but it reply NA in console because dataset is missing some values, how to overcome...na.rm = TRUE
+nhanes_small %>%
+    summarise(max_bmi = max(bmi, na.rm = TRUE))
+
+#calculating 2 summary statistics
+nhanes_small %>%
+    summarise(max_bmi = max(bmi, na.rm = TRUE),
+             min_bmi = min(bmi, na.rm = TRUE))
+
