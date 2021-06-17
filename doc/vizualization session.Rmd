@@ -1,0 +1,45 @@
+---
+title: "Data viz"
+author: "Beata"
+date: "17/06/2021"
+output: html_document
+---
+```{r setup}
+#load packages
+source(here::here("R/package-loading.R"))
+
+#load the dataset- tided
+load(here::here("data/nhanes_small.rda"))
+
+```
+
+#one variable plot- continous variables- nr, 
+```{r continous-variables}
+ggplot(nhanes_small, aes(x = bmi)) +
+    geom_density()
+
+ggplot(nhanes_small, aes(x = bmi)) +
+    geom_histogram()
+```
+```{r discrete_variables}
+ggplot(nhanes_small, aes(x = sex)) +
+    geom_bar()
+
+# add diabets status
+ggplot(nhanes_small, aes(x = diabetes)) +
+    geom_bar()
+```
+#remove NA from graph- data wrangling- new data set called nhanes_tidied done fron nhanes_small
+```{r remove missing-diabetes}
+nhanes_tidied <- nhanes_small %>% 
+    filter(!is.na(diabetes))
+
+#safe new dataset that can be edited-overwrite again in the code above ...add stuff to code- remove NA fot other value- do not need to safe it with new name. 
+usethis::use_data(nhanes_tidied, overwrite = T)
+
+#new graph with NA removed- nhanes tided
+ggplot(nhanes_tidied, aes(x = diabetes)) +
+    geom_bar()
+```
+
+
