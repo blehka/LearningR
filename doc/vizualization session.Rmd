@@ -42,4 +42,58 @@ ggplot(nhanes_tidied, aes(x = diabetes)) +
     geom_bar()
 ```
 
+## PLOTTING 2 VARIABLES with new file name bmi_chol <- (this is to make many diffrent plots from that without writing ---ggplot(nhanes_tidied, aes (x = bmi, y = tot_chol)) EVERY TIME), assign the as object again - run it first before running the plot!- new file in the Environment 
 
+```{r 2-continious-variables}
+bmi_chol <- ggplot(nhanes_tidied, aes (x = bmi, y = tot_chol))
+
+#so now we can just write bmi_chol + ... geom_... (because the bmi_chol + is safed <-... the long function)
+
+bmi_chol +
+    geom_point()
+
+bmi_chol +
+    geom_hex()
+
+# doubble graph
+
+bmi_chol +
+geom_hex () +
+geom_smooth()
+```
+
+# assign the as object again - run it first before running the plot!
+```{r 2-disrete-variables}
+two_discrete <- nhanes_tidied %>% 
+    ggplot(aes(x = diabetes, fill = sex))
+
+two_discrete +
+    geom_bar()
+
+# not on top of each other but side by side
+
+two_discrete +
+    geom_bar(position = position_dodge())
+```
+```{r discrete-continous-variables}
+#create and object <-  
+
+tow_mixed <- nhanes_tidied %>% 
+    ggplot(aes(x = diabetes, y = bmi))
+
+#then make a graph
+
+tow_mixed +
+    geom_boxplot()
+
+# spotts graph
+
+tow_mixed +
+    geom_jitter()
+
+#ray plot
+
+tow_mixed +
+    geom_violin()
+
+```
